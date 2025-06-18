@@ -1,0 +1,15 @@
+# Use lightweight Java base image
+FROM openjdk:17-jdk-slim
+
+# Set working directory inside container
+WORKDIR /app
+
+# Copy the jar file
+COPY target/*.jar app.jar
+
+# Expose the port Cloud Run listens to
+EXPOSE 8080
+ENV PORT=8080
+
+# Command to run the app
+ENTRYPOINT ["java", "-jar", "app.jar"]
